@@ -1,18 +1,16 @@
 import * as dotenv from "dotenv";
 import express from "express";
 import { dbConnect } from "./db/db";
+import { router as taskRouter } from "./Routes/task";
 
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 4000;
+const port = process?.env?.PORT || 4000;
 
 // middlewares
 app.use(express.json());
-
-app.get('/', (req, res) => {
-  res.send("WASSUP!")
-})
+app.use("/task", taskRouter);
 
 const startServer = async () => {
   try {
